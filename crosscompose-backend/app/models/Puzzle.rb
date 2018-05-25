@@ -10,4 +10,8 @@ class Puzzle < ApplicationRecord
     slug.gsub('-', ' ').titlecase()
   end
 
+  def black_square_coords
+    self.letters.select{|l| l['black']}.map{|l| {'x': l['x'], 'y': l['y']}}
+  end
+
 end

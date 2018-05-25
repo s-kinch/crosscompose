@@ -37,7 +37,7 @@ class Api::V1::PuzzlesController < ApplicationController
       row.each do |letter|
         across_clue = Clue.where(puzzle_id: puzzle.id).where(number: letter['across_clue_number'])[0]
         down_clue = Clue.where(puzzle_id: puzzle.id).where(number: letter['down_clue_number'])[0]
-        letter = Letter.create(puzzle: puzzle, x: letter['x'], y: letter['y'], black: letter['black'], value: letter['value'], across_clue: across_clue, down_clue: down_clue)
+        new_letter = Letter.create(puzzle: puzzle, x: letter['x'], y: letter['y'], black: letter['black'], value: letter['value'], across_clue: across_clue, down_clue: down_clue)
       end
     end
 
@@ -50,7 +50,23 @@ class Api::V1::PuzzlesController < ApplicationController
 
   def play
     puzzle = Puzzle.find_by(slug: params[:slug])
-    render json: puzzle
+    render json: puzzle_for_play_start(puzzle)
+  end
+
+  def check_letter
+    puzzle = Puzzle.find_by(slug: params[:slug])
+    letter = Letter.find_by(puzzle: puzzle, x: params[:square][:x], y: params[:square][:y])
+    render json: letter
+  end
+
+  private
+  def puzzle_for_play_start(puzzle)
+    {
+      slug: puzzle['slug'],
+      title: puzzle['title'],
+      clues: puzzle.clues.where.not(number: -1),
+      black_squares: puzzle.black_square_coords
+    }
   end
 
 end
