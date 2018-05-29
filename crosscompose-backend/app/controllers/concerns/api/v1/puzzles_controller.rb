@@ -18,12 +18,24 @@ class Api::V1::PuzzlesController < ApplicationController
   end
 
   def save
-    # allow updating title
-    # string.parameterize (slugify title they pass in)
-    # if one already exists with this slug do something to it (add # or word or something)
-    # https://makandracards.com/makandra/31961-rails-has-a-built-in-slug-generator
-
     puzzle = Puzzle.find_by(slug: params[:slug])
+
+    new_title = params[:title]
+    if puzzle['title'] != new_title
+      puzzle['title'] = new_title
+      new_slug = new_title.parameterize
+      while Puzzle.find_by(slug: new_slug) do
+        slug_parts = new_slug.split('-')
+        if slug_parts[-1].to_i === 0
+          new_slug = slug_parts.join('-') + '-1'
+        else
+          slug_parts[-1] = slug_parts[-1].to_i + 1
+          new_slug = slug_parts.join('-')
+        end
+      end
+      puzzle['slug'] = new_slug
+      puzzle.save
+    end
 
     params[:across_clues].each do |clue|
       clue = Clue.create(puzzle: puzzle, across: true, number: clue['word'][0]['number'], text: clue['text'])
