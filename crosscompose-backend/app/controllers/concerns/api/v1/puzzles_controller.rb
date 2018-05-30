@@ -53,6 +53,7 @@ class Api::V1::PuzzlesController < ApplicationController
       end
     end
 
+    render json: {slug: puzzle['slug']}
   end
 
   def index
