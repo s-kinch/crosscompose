@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20180522142454) do
   create_table "puzzles", force: :cascade do |t|
     t.string "title"
     t.string "slug"
+    t.boolean "published", default: false
   end
 
 end

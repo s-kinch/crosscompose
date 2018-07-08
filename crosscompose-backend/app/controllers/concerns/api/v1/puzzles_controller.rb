@@ -53,11 +53,14 @@ class Api::V1::PuzzlesController < ApplicationController
       end
     end
 
+    puzzle['published'] = true
+    puzzle.save
+
     render json: {slug: puzzle['slug']}
   end
 
   def index
-    puzzles = Puzzle.all
+    puzzles = Puzzle.where('published = true')
     render json: puzzles
   end
 
@@ -70,6 +73,12 @@ class Api::V1::PuzzlesController < ApplicationController
     puzzle = Puzzle.find_by(slug: params[:slug])
     letter = Letter.find_by(puzzle: puzzle, x: params[:square][:x], y: params[:square][:y])
     render json: letter
+  end
+
+  def word_suggestions
+    regex = /^#{params[:pattern].upcase.gsub('-', '.')}$/
+    words = Dictionary.words.keys.select{|word| word.match(regex)}
+    render json: {'words': words}
   end
 
   private
