@@ -12,7 +12,7 @@ class Clues extends React.Component {
     return(
       <div>
       <Segment inverted>
-        { this.props.play ? 'Click a square on the grid and typing.' : 'Click a clue or square on the grid and start typing.'}
+        { this.props.play ? 'Click a square on the grid and start typing.' : 'Click a clue or square on the grid and start typing.'}
       </Segment>
 
       { this.props.play ? '' :

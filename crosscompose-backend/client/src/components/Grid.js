@@ -3,7 +3,7 @@ import CreateMenu from './CreateMenu'
 import PlayMenu from './PlayMenu'
 import Square from './Square'
 import { Redirect } from 'react-router'
-const API = 'http://localhost:3000/api/v1/puzzles'
+const API = 'https://crosscompose.herokuapp.com/api/v1'
 
 class Grid extends React.Component {
   constructor(props){
@@ -617,6 +617,7 @@ class Grid extends React.Component {
 
       if (this.state.squares[x][y].value !== ""){
         this.checkSquareFetch(xToCheck, yToCheck).then(json => {
+          console.log(json)
           const letter = json
           let squaresCopy = [...this.state.squares]
           squaresCopy[xToCheck][yToCheck] = {...squaresCopy[xToCheck][yToCheck], correct: letter.value === squaresCopy[xToCheck][yToCheck].value}

@@ -1,6 +1,6 @@
 import React from 'react'
 import Grid from './Grid'
-const API = 'http://localhost:3000/api/v1/puzzles'
+const API = 'https://crosscompose.herokuapp.com/api/v1/puzzles'
 
 class Create extends React.Component {
   constructor(){
