@@ -3,7 +3,7 @@ import CreateMenu from './CreateMenu'
 import PlayMenu from './PlayMenu'
 import Square from './Square'
 import { Redirect } from 'react-router'
-const API = 'https://crosscompose.herokuapp.com/api/v1'
+const API = 'https://crosscompose.herokuapp.com/api/v1/puzzles'
 
 class Grid extends React.Component {
   constructor(props){
