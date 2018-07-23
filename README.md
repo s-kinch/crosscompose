@@ -15,4 +15,4 @@ In both ‘Create’ and ‘Play’ modes, the user can use the arrow keys to mo
 
 Acknowledgements 
 
-This is a final project from the Software Engineering Immersive program at the Flatiron School. Thanks to instructors Steven, Tashawn, and Graham for their help along the way.
+This is a final project from the Software Engineering Immersive program at the Flatiron School. Thanks to instructors Steven, Tashawn, and Graham for their help.
