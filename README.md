@@ -1,7 +1,7 @@
 CrossCompose
 
 CrossCompose is a tool to create, share, and play crossword puzzles in the browser. Users can click the ‘Create’ tab to create a new crossword puzzle. Once saved, the puzzle will be playable at its own unique URL. All saved puzzles are searchable under the ‘Play’ tab.
-A live demo of CrossCompose is up at https://crosscompose.herokuapp.com.
+A live demo of CrossCompose is up at https://crosscompose.herokuapp.com, and a walkthrough video is here: https://youtu.be/-vaX4UTrzk0.
 
 
 User Experience
